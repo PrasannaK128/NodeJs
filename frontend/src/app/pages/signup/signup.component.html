@@ -1,0 +1,37 @@
+<div class="signup-container">
+  <form class="signup-form" (ngSubmit)="onSubmit()" #form="ngForm">
+    <h2>Sign Up</h2>
+
+    <div class="input-group">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" [(ngModel)]="signup.name" required />
+    </div>
+
+    <div class="input-group">
+      <label for="city">City</label>
+      <input type="text" id="city" name="city" [(ngModel)]="signup.city" required />
+    </div>
+
+    <div class="input-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" [(ngModel)]="signup.email" required />
+    </div>
+
+    <div class="input-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" [(ngModel)]="signup.password" required />
+    </div>
+
+    <div class="input-group">
+      <label for="role">Role</label>
+      <select id="role" name="role" [(ngModel)]="signup.role" required>
+        <option value="" disabled selected>Select Role</option>
+        <option value="admin">Admin</option>
+        <option value="manager">Manager</option>
+        <option value="employee">Employee</option>
+      </select>
+    </div>
+
+    <button type="submit">Create Account</button>
+  </form>
+</div>

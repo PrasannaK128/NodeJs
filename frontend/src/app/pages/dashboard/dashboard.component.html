@@ -1,0 +1,87 @@
+<div class="container">
+  <h1>Employee Management</h1>
+
+  <div class="actions">
+    <button class="btn btn-primary" (click)="showAddForm()">➕ Add</button>
+    <button class="btn btn-warning" (click)="showUpdateForm()">✏️ Update</button>
+    <button class="btn btn-danger" (click)="showDeleteForm()">🗑️ Delete</button>
+    <button class="btn btn-secondary" (click)="logout()">🚪 Logout</button>
+  </div>
+
+  <!-- Add Employee Form -->
+  <div *ngIf="isAddFormVisible" class="form-box">
+    <h2>Add Employee</h2>
+    <form class="form-grid">
+      <input type="text" placeholder="Name" [(ngModel)]="formData.name">
+      <input type="email" placeholder="Email" [(ngModel)]="formData.email">
+      <input type="password" placeholder="Password" [(ngModel)]="formData.password">
+      <input type="text" placeholder="Company" [(ngModel)]="formData.companyname">
+      <input type="number" placeholder="Salary" [(ngModel)]="formData.salerey">
+      <input type="text" placeholder="Department" [(ngModel)]="formData.department">
+      <input type="file" (change)="onFileSelected($event)">
+    </form>
+    <button class="btn btn-primary full-width" (click)="addEmployee()">✅ Submit</button>
+  </div>
+
+  <!-- Update Employee Form -->
+  <div *ngIf="isUpdateFormVisible" class="form-box">
+    <h2>Update Employee</h2>
+    <form class="form-grid">
+      <input type="text" placeholder="ID" [(ngModel)]="formData.id">
+      <input type="text" placeholder="Name" [(ngModel)]="formData.name">
+      <input type="email" placeholder="Email" [(ngModel)]="formData.email">
+      <input type="password" placeholder="Password" [(ngModel)]="formData.password">
+      <input type="text" placeholder="Company" [(ngModel)]="formData.companyname">
+      <input type="number" placeholder="Salary" [(ngModel)]="formData.salerey">
+      <input type="text" placeholder="Department" [(ngModel)]="formData.department">
+      <input type="file" (change)="onFileSelected($event)">
+    </form>
+    <button class="btn btn-warning full-width" (click)="updateEmployee()">🔄 Submit</button>
+  </div>
+
+  <!-- Delete Form -->
+  <div *ngIf="isDeleteFormVisible" class="form-box">
+    <h2>Delete Employee</h2>
+    <form class="form-grid">
+      <input type="text" placeholder="ID" [(ngModel)]="formData.id">
+    </form>
+    <button class="btn btn-danger full-width" (click)="deleteEmployee()">🗑️ Delete</button>
+  </div>
+
+  <!-- Table -->
+  <div class="table-wrapper">
+    <table class="employee-table">
+      <thead>
+        <tr>
+          <th (click)="sortDataId()" class="sortable">ID ⬍</th>
+          <th>Image</th>
+          <th (click)="sortDataName()" class="sortable">Name ⬍</th>
+          <th (click)="sortDataEmail()" class="sortable">Email ⬍</th>
+          <th (click)="sortDataCompany()" class="sortable">Company ⬍</th>
+          <th (click)="sortDataSalary()" class="sortable">Salary ⬍</th>
+          <th (click)="sortDataDepartment()" class="sortable">Department ⬍</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let i of data">
+          <td>{{ i.id }}</td>
+          <td>
+            <img [src]="'http://localhost:1000/uploads/' + i.passport" class="profile-pic" />
+          </td>
+          <td>{{ i.name }}</td>
+          <td>{{ i.email }}</td>
+          <td>{{ i.companyname }}</td>
+          <td>{{ i.salerey }}</td>
+          <td>{{ i.department }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination">
+    <button class="btn btn-secondary" (click)="previousPage()">⬅️ Previous</button>
+    <span class="page-info">Page {{ currentPage }} of {{ totalPages }}</span>
+    <button class="btn btn-secondary" (click)="nextPage()">Next ➡️</button>
+  </div>
+</div>
